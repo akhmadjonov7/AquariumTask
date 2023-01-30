@@ -15,16 +15,18 @@ public class FishLife extends Thread {
 
     @Override
     public void run() {
-        while(fish.getLife()>0){
 
-            for (int i = 0; i < allFishes.size(); i++) {
-                if (allFishes.get(i).getLocation()==fish.getLocation() && allFishes.get(i).isMale()!= fish.isMale() ){
-                    Fish fish1 = new Fish(random.nextBoolean(), random.nextInt(100) + 1, random.nextInt(100) + 1);
+        while(fish.getLife()>0){
+            ArrayList<Fish> list =  allFishes;
+            list.remove(fish);
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getLocation()==fish.getLocation() && list.get(i).isMale()!= fish.isMale() ){
+                    Fish fish1 = new Fish(random.nextBoolean(), random.nextInt(100) + 1, random.nextInt(500) + 1);
                     allFishes.add(fish1);
                     fishCount();
                 }
             }
-            fish.setLocation(random.nextInt(1000) +1);
+            fish.setLocation(random.nextInt(500) +1);
             fish.setLife(fish.getLife()-1);
 
         }
